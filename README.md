@@ -4,16 +4,54 @@ ITSM 601 team project. This repository contains a modular Python application
 for recording income and expenses, generating financial reports, and displaying
 an expenses-by-category chart with Turtle Graphics.
 
+## Features
+
+- Add, edit, and delete financial transactions
+- Categorize income and expenses
+- Store transaction data using CSV files
+- Calculate total income and expenses
+- Calculate net savings
+- Generate weekly and monthly financial summaries
+- Create visual representations of spending patterns using Turtle Graphics
+- Validate and sanitize user input
+- Provide error handling for invalid entries
+
 ## Project Layout
 
-- `src/models.py`: validated transaction data model
-- `src/storage.py`: CSV loading and saving
-- `src/finance.py`: input validation and financial calculations
-- `src/reports.py`: period, category, and monthly reports
-- `src/visualization.py`: Turtle chart generation
-- `src/main.py`: command-line interface and `main()` entry point
-- `tests/`: automated tests for the core functionality
-- `data/`: application data, including the generated `transactions.csv`
+```text
+personal-finance-tracker/
+│
+├── data/
+│   ├── transactions.csv
+│   └── categories.csv
+│
+├── docs/
+│   ├── Phase-1-Project-Proposal.pdf
+│   ├── Phase-2-Project-Report.pdf
+│   ├── Phase-3-Project-Report.pdf
+│   ├── Phase-4-Project-Report.pdf
+│   └── architecture_diagram.png
+│
+├── images/
+│   └── bar-chart.png
+│
+├── src/
+│   ├── main.py
+│   ├── transactions.py
+│   ├── summaries.py
+│   ├── visualizer.py
+│   └── utils.py
+│
+└── README.md
+
+| Module            | Responsibility                                              |
+| ----------------- | ----------------------------------------------------------- |
+| `main.py`         | Program entry point and primary user interface              |
+| `transactions.py` | Transaction management and CSV data storage                 |
+| `summaries.py`    | Financial calculations and period-based summaries           |
+| `visualizer.py`   | Turtle Graphics visualizations                              |
+| `utils.py`        | Input validation, sanitization, and shared helper functions |
+
 
 ## Setup
 
