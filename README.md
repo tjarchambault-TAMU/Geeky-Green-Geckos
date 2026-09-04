@@ -44,22 +44,24 @@ personal-finance-tracker/
 │
 └── README.md
 
-Module Responsibilities
-Module	Responsibility
-main.py	Program entry point and primary user interface
-transactions.py	Transaction management and CSV data storage
-summaries.py	Financial calculations and period-based summaries
-visualizer.py	Turtle Graphics visualizations
-utils.py	Input validation, sanitization, and shared helper functions
-Setup
+## Module Responsibilities
+
+| Module | Responsibility |
+|---|---|
+| `main.py` | Program entry point and primary user interface |
+| `transactions.py` | Transaction management and CSV data storage |
+| `summaries.py` | Financial calculations and period-based summaries |
+| `visualizer.py` | Turtle Graphics visualizations |
+| `utils.py` | Input validation, sanitization, and shared helper functions |
+
+## Setup
 
 Python 3.10 or newer is required. A virtual environment is recommended:
 
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -e ".[dev]"
-
-No runtime libraries outside the Python standard library are required.
 
 ## Run
 
