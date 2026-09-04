@@ -44,6 +44,8 @@ personal-finance-tracker/
 │
 └── README.md
 
+## Module Responsibilities
+
 | Module            | Responsibility                                              |
 | ----------------- | ----------------------------------------------------------- |
 | `main.py`         | Program entry point and primary user interface              |
