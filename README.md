@@ -43,7 +43,7 @@ personal-finance-tracker/
 │   └── utils.py
 │
 └── README.md
-
+```
 ## Module Responsibilities
 
 | Module | Responsibility |
