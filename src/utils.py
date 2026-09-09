@@ -67,10 +67,17 @@ def get_valid_transaction_type():
 
 
 def get_category_choice():
-    """Display the category menu and return the chosen category name."""
-    print("\nCategories:")
-    for key, name in CATEGORIES.items():
-        print(f"{key}. {name}")
+    """Display the category menu and keep asking until a valid category is selected."""
 
-    choice = input("Choose a category (1-9): ")
-    return CATEGORIES.get(choice, "Miscellaneous")
+    while True:
+        print("\nCategories:")
+
+        for key, name in CATEGORIES.items():
+            print(f"{key}. {name}")
+
+        choice = input("Choose a category (1-9): ").strip()
+
+        if choice in CATEGORIES:
+            return CATEGORIES[choice]
+
+        print("Invalid choice. Please select a category from 1-9.")
