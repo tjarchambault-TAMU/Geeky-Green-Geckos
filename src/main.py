@@ -36,7 +36,7 @@ def main():
         elif choice == "5":
             print("\nBudget status tracking is coming in a future phase.")
         elif choice == "6":
-            visualizer.show_category_chart()
+            print("\nBudget graphing is coming in a future phase.")
         elif choice == "7":
             print("\nThank you for using Personal Finance Tracker!")
             break

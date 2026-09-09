@@ -48,13 +48,22 @@ def get_valid_amount(prompt="Enter the amount: $"):
             print("Please enter a valid number.")
 
 
-def get_valid_transaction_type(prompt="Is this income or expense? "):
-    """Keep asking until the user enters 'income' or 'expense'."""
+def get_valid_transaction_type():
+    """Prompt the user to select either income or expense."""
+
     while True:
-        transaction_type = input(prompt).strip().lower()
-        if transaction_type in ("income", "expense"):
-            return transaction_type
-        print("Please enter either 'income' or 'expense'.")
+        print("\nTransaction Type:")
+        print("1. Income")
+        print("2. Expense")
+
+        choice = input("Choose a transaction type (1-2): ")
+
+        if choice == "1":
+            return "income"
+        elif choice == "2":
+            return "expense"
+        else:
+            print("Invalid choice. Please select 1 or 2.")
 
 
 def get_category_choice():

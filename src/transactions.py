@@ -9,7 +9,9 @@ DATA_DIR = "data"
 FILE_NAME = "transactions.csv"
 FILE_PATH = os.path.join(DATA_DIR, FILE_NAME)
 
-
+# --------------------------------------------------------
+# Create the transaction file
+# --------------------------------------------------------
 def create_file():
     """Create the data folder and CSV file (with headers) if they don't exist."""
     os.makedirs(DATA_DIR, exist_ok=True)
@@ -20,6 +22,31 @@ def create_file():
             writer.writerow(["Date", "Description", "Category", "Amount", "Type"])
 
 
+# --------------------------------------------------------
+# Save a transaction to the CSV file
+# --------------------------------------------------------
+def save_transaction(date, description, category, amount, transaction_type):
+    """save a completed transaction to the CSV file."""
+
+    # make sure the data folder and transaction file exist
+    create_file()
+
+    with open(FILE_PATH, "a", newline="") as file:
+        writer = csv.writer(file)
+
+        writer.writerow([
+            date,
+            description,
+            category,
+            f"{amount:.2f}",
+            transaction_type
+        ])
+
+
+
+# --------------------------------------------------------
+# Add a new transaction
+# --------------------------------------------------------
 def add_transaction():
     print("\n--- Add Transaction ---")
 
@@ -51,6 +78,10 @@ def add_transaction():
 
     print("\nTransaction successfully saved!")
 
+
+# --------------------------------------------------------
+# Load transactions from the CSV file
+# --------------------------------------------------------
 def load_transactions():
     """Return all transactions as a list of dictionaries."""
     create_file()
@@ -60,6 +91,9 @@ def load_transactions():
         return list(reader)
 
 
+# --------------------------------------------------------
+# Display all transactions
+# --------------------------------------------------------
 def view_transactions():
     """Print every recorded transaction."""
     print("\n--- All Transactions ---")
