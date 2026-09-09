@@ -3,7 +3,7 @@
 import csv
 import os
 
-from src import utils
+import utils
 
 DATA_DIR = "data"
 FILE_NAME = "transactions.csv"
