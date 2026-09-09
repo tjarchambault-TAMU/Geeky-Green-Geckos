@@ -21,21 +21,35 @@ def create_file():
 
 
 def add_transaction():
-    """Prompt the user for transaction details and append it to the CSV file."""
     print("\n--- Add Transaction ---")
 
+    # Get the transaction date and description.
     date = utils.get_valid_date()
     description = utils.get_non_empty_string("Enter a description: ")
-    category = utils.get_category_choice()
-    amount = utils.get_valid_amount()
+
+    # Determine whether the transaction is income or an expense.
     transaction_type = utils.get_valid_transaction_type()
 
-    with open(FILE_PATH, "a", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow([date, description, category, f"{amount:.2f}", transaction_type])
+    # Income transactions automatically use the Income category.
+    # Expense transactions require the user to select a category.
+    if transaction_type == "income":
+        category = "Income"
+    else:
+        category = utils.get_category_choice()
+
+    # Get the transaction amount.
+    amount = utils.get_valid_amount()
+
+    # Save the completed transaction.
+    save_transaction(
+        date,
+        description,
+        category,
+        amount,
+        transaction_type
+    )
 
     print("\nTransaction successfully saved!")
-
 
 def load_transactions():
     """Return all transactions as a list of dictionaries."""
