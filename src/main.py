@@ -1,8 +1,8 @@
 """Personal Finance Tracker - command-line entry point."""
 
-from src import transactions
-from src import summaries
-from src import visualizer
+import transactions
+import summaries
+import visualizer
 
 
 def display_menu():
