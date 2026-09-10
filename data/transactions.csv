@@ -1,3 +1,15 @@
 Date,Description,Category,Amount,Type
 06/26/2020,paycheck,Income,2500.00,income
 06/26/2020,rent,Housing,1150.00,expense
+09/09/2026,test1,Miscellaneous,3000.00,expense
+09/09/2026,test 2,Income,1650.00,income
+09/02/2026,test 3,Income,360.00,income
+09/09/2026,test 3,Miscellaneous,300.00,expense
+12/12/1989,test 4,Groceries,30.00,expense
+12/12/1989,test 5,Utilities,50.00,expense
+12/12/1989,test 6,Transportation,100.00,expense
+12/12/1989,test 7,Dining,150.00,expense
+12/12/1989,test 8,Entertainment,75.00,expense
+12/12/1989,test 9,Education,7000.00,expense
+12/12/1989,test 0,Healthcare,20.00,expense
+12/12/1989,test11,Income,7365.00,income
