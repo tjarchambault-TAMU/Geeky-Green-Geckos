@@ -15,7 +15,7 @@ def category_based_expenses():
               category_totals[category] += amount
             else:
               category_totals[category] = amount
-print("\n--- Expenses by Category ---")
+print("\n--- Category Based Expenses ---")
 
 for category, total in category_totals.items():
   print(f"{category}: ${total:.2f}")
@@ -35,7 +35,7 @@ def monthly_spending()
                 monthly_totals[month] += amount
             else:
                 monthly_totals[month] = amount
-print("\n--- Spending by Month ---")
+print("\n--- Monthly Spending ---")
 
 for month, total in monthly_totals.items():
     print(f"{month}: ${total:.2f}")
