@@ -28,7 +28,7 @@ def monthly_spending():
     for transaction in records:
         if transaction["Type"].lower()== "expense":
             date = transaction["Date"]
-            month_year = date.split("/")[0] + "/" + date.split("/"[2]
+            month_year = date.split("/")[0] + "/" + date.split("/"[2])
             amount = float(transaction["Amount"])
 
             if month  in monthly_totals:
