@@ -18,7 +18,7 @@ def category_based_expenses():
 print("\n--- Category Based Expenses ---")
 
 for category, total in category_totals.items():
-  print(f"{category}: ${total:.2f}")
+    print(f"{category}: ${total:.2f}")
 
 def monthly_spending():
     """Display total expenses for each month."""
