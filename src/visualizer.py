@@ -35,10 +35,10 @@ def monthly_spending():
                 monthly_totals[month] += amount
             else:
                 monthly_totals[month] = amount
-print("\n--- Monthly Spending ---")
+    print("\n--- Monthly Spending ---")
 
-for month, total in monthly_totals.items():
-    print(f"{month}: ${total:.2f}")
+    for month, total in monthly_totals.items():
+        print(f"{month}: ${total:.2f}")
 
 if __name__ == "__main__":
     category_based_expenses()
