@@ -20,7 +20,7 @@ print("\n--- Category Based Expenses ---")
 for category, total in category_totals.items():
   print(f"{category}: ${total:.2f}")
 
-def monthly_spending()
+def monthly_spending():
     """Display total expenses for each month."""
     records = transactions.load_transactions()
     monthly_totals = {}
