@@ -38,7 +38,7 @@ def monthly_spending():
     print("\n--- Monthly Spending ---")
 
     for month_year, total in monthly_totals.items():
-        print(f"{month}: ${total:.2f}")
+        print(f"{month_year}: ${total:.2f}")
 
 if __name__ == "__main__":
     category_based_expenses()
