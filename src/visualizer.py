@@ -31,13 +31,13 @@ def monthly_spending():
             month_year = date.split("/")[0] + "/" + date.split("/")[2]
             amount = float(transaction["Amount"])
 
-            if month  in monthly_totals:
-                monthly_totals[month] += amount
+            if month_year in monthly_totals:
+                monthly_totals[month_year] += amount
             else:
-                monthly_totals[month] = amount
+                monthly_totals[month_year] = amount
     print("\n--- Monthly Spending ---")
 
-    for month, total in monthly_totals.items():
+    for month_year, total in monthly_totals.items():
         print(f"{month}: ${total:.2f}")
 
 if __name__ == "__main__":
