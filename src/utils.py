@@ -40,8 +40,8 @@ def get_valid_amount(prompt="Enter the amount: $"):
     while True:
         try:
             amount = float(input(prompt))
-            if amount < 0:
-                print("Amount cannot be negative.")
+            if amount <= 0:
+                print("Amount must be greater than zero.")
                 continue
             return amount
         except ValueError:
