@@ -19,12 +19,11 @@ def calculate_total_income():
 def calculate_total_expenses():
     """Return the sum of all recorded expense transactions."""
     expenses = 0
-    
-     for transaction in transactions.load_transactions()
-         if transaction["Type"].lower() == "expense":
-             try:
-                 expenses += float(transaction["Amount"])
-             except ValueError:
+    for transaction in transactions.load_transactions()
+        if transaction["Type"].lower() == "expense":
+            try:
+                expenses += float(transaction["Amount"])
+            except ValueError:
                 print("Invalid expense transaction amount.")
         return expenses
 
