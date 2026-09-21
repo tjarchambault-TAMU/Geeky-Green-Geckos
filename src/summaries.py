@@ -5,20 +5,30 @@ import transactions
 
 def calculate_total_income():
     """Return the sum of all recorded income transactions."""
-    return sum(
-        float(row["Amount"])
-        for row in transactions.load_transactions()
-        if row["Type"].lower() == "income"
-    )
+    total_income = 0
+
+    for transaction in transactions.load_transactions():
+        if transaction["Type"].lower() == "income":
+            
+        try:
+            total_income += float(transaction["Amount"])
+        except ValueError:
+            print("Transaction has an invalid amount.")
+    return total_income
 
 
 def calculate_total_expenses():
     """Return the sum of all recorded expense transactions."""
-    return sum(
-        float(row["Amount"])
-        for row in transactions.load_transactions()
-        if row["Type"].lower() == "expense"
-    )
+    expenses = 0
+    
+        for transaction in transactions.load_transactions()
+        if transaction["Type"].lower() == "expense":
+
+        try:
+            expenses += float(transaction["Amount"])
+        except ValueError:
+            print("Invalid expense transaction amount.")
+    return expenses
 
 
 def calculate_net_savings():
