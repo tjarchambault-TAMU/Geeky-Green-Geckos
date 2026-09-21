@@ -22,7 +22,7 @@ def calculate_total_expenses():
     for transaction in transactions.load_transactions():
         if transaction["Type"].lower() == "expense":
             try:
-                expense += float(transaction["Amount"])
+                expenses += float(transaction["Amount"])
             except ValueError:
                 print("Invalid expense transaction amount.")
     return expenses
