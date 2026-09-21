@@ -36,7 +36,7 @@ def get_valid_date(prompt="Enter the date (MM/DD/YYYY): "):
 
 
 def get_valid_amount(prompt="Enter the amount: $"):
-    """Keep asking until the user enters a valid, non-negative number."""
+    """Keep asking until the user enters a valid, positive number."""
     while True:
         try:
             amount = float(input(prompt))
