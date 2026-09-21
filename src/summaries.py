@@ -20,6 +20,7 @@ def calculate_total_expenses():
     """Return the sum of all recorded expense transactions."""
     expenses = 0
     for transaction in transactions.load_transactions():
+        print(transaction["Type"])
         if transaction["Type"].lower() == "expense":
             try:
                 expenses += float(transaction["Amount"])
