@@ -8,8 +8,7 @@ def calculate_total_income():
     total_income = 0
 
     for transaction in transactions.load_transactions():
-        if transaction["Type"].lower() == "income":
-            
+        if transaction["Type"].lower() == "income":    
         try:
             total_income += float(transaction["Amount"])
         except ValueError:
@@ -23,7 +22,6 @@ def calculate_total_expenses():
     
         for transaction in transactions.load_transactions()
             if transaction["Type"].lower() == "expense":
-
             try:
                 expenses += float(transaction["Amount"])
             except ValueError:
