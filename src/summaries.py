@@ -25,7 +25,7 @@ def calculate_total_expenses():
                 expenses += float(transaction["Amount"])
             except ValueError:
                 print("Invalid expense transaction amount.")
-        return expenses
+    return expenses
 
 
 def calculate_net_savings():
