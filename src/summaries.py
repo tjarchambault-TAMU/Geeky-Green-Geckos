@@ -1,6 +1,6 @@
-"""Financial calculations and period-based summaries."""
+"""Financial summaries and calculations."""
 
-import transactions
+from . import transactions
 
 
 def calculate_total_income():

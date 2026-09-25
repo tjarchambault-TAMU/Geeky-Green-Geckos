@@ -3,112 +3,68 @@
 import csv
 import os
 
-import utils
+from . import utils
 
 DATA_DIR = "data"
 FILE_NAME = "transactions.csv"
 FILE_PATH = os.path.join(DATA_DIR, FILE_NAME)
+HEADERS = ["Date", "Description", "Category", "Amount", "Type"]
 
-# --------------------------------------------------------
-# Create the transaction file
-# --------------------------------------------------------
 def create_file():
-    """Create the data folder and CSV file (with headers) if they don't exist."""
+    """Create the data folder and CSV file with headers if needed."""
     os.makedirs(DATA_DIR, exist_ok=True)
-
     if not os.path.exists(FILE_PATH):
-        with open(FILE_PATH, "w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow(["Date", "Description", "Category", "Amount", "Type"])
+        with open(FILE_PATH, "w", newline="", encoding="utf-8") as file:
+            csv.writer(file).writerow(HEADERS)
 
-
-# --------------------------------------------------------
-# Save a transaction to the CSV file
-# --------------------------------------------------------
 def save_transaction(date, description, category, amount, transaction_type):
-    """save a completed transaction to the CSV file."""
-
-    # make sure the data folder and transaction file exist
+    """Save a completed transaction to the CSV file."""
     create_file()
+    with open(FILE_PATH, "a", newline="", encoding="utf-8") as file:
+        csv.writer(file).writerow([date, description, category, f"{amount:.2f}", transaction_type])
 
-    with open(FILE_PATH, "a", newline="") as file:
-        writer = csv.writer(file)
-
-        writer.writerow([
-            date,
-            description,
-            category,
-            f"{amount:.2f}",
-            transaction_type
-        ])
-
-
-
-# --------------------------------------------------------
-# Add a new transaction
-# --------------------------------------------------------
 def add_transaction():
+    """Prompt for and save a new transaction."""
     print("\n--- Add Transaction ---")
-
-    # Get the transaction date and description.
     date = utils.get_valid_date()
     description = utils.get_non_empty_string("Enter a description: ")
-
-    # Determine whether the transaction is income or an expense.
     transaction_type = utils.get_valid_transaction_type()
-
-    # Income transactions automatically use the Income category.
-    # Expense transactions require the user to select a category.
-    if transaction_type == "income":
-        category = "Income"
-    else:
-        category = utils.get_category_choice()
-
-    # Get the transaction amount.
+    category = "Income" if transaction_type == "income" else utils.get_category_choice()
     amount = utils.get_valid_amount()
+    try:
+        save_transaction(date, description, category, amount, transaction_type)
+        print("\nTransaction successfully saved!")
+    except OSError as error:
+        print(f"\nUnable to save the transaction: {error}")
 
-    # Save the completed transaction.
-    save_transaction(
-        date,
-        description,
-        category,
-        amount,
-        transaction_type
-    )
-
-    print("\nTransaction successfully saved!")
-
-
-# --------------------------------------------------------
-# Load transactions from the CSV file
-# --------------------------------------------------------
 def load_transactions():
-    """Return all transactions as a list of dictionaries."""
-    create_file()
+    """Return valid transaction rows from the CSV file."""
+    try:
+        create_file()
+        with open(FILE_PATH, "r", newline="", encoding="utf-8") as file:
+            reader = csv.DictReader(file)
+            if reader.fieldnames != HEADERS:
+                raise ValueError("transactions.csv has an unexpected header or format.")
+            records = []
+            for row_number, row in enumerate(reader, start=2):
+                if any(value is None for value in row.values()):
+                    print(f"Warning: row {row_number} contains missing fields and will be skipped.")
+                    continue
+                records.append(row)
+            return records
+    except FileNotFoundError:
+        print("Transaction file could not be found.")
+        return []
+    except (OSError, csv.Error, ValueError) as error:
+        print(f"Unable to read transaction data: {error}")
+        return []
 
-    with open(FILE_PATH, "r", newline="") as file:
-        reader = csv.DictReader(file)
-        return list(reader)
-
-
-# --------------------------------------------------------
-# Display all transactions
-# --------------------------------------------------------
 def view_transactions():
     """Print every recorded transaction."""
     print("\n--- All Transactions ---")
-
     records = load_transactions()
-
     if not records:
-        print("No transactions have been recorded yet.")
+        print("No valid transactions have been recorded yet.")
         return
-
     for row in records:
-        print(
-            f"Date: {row['Date']} | "
-            f"Description: {row['Description']} | "
-            f"Category: {row['Category']} | "
-            f"Amount: ${row['Amount']} | "
-            f"Type: {row['Type']}"
-        )
+        print(f"Date: {row['Date']} | Description: {row['Description']} | Category: {row['Category']} | Amount: ${row['Amount']} | Type: {row['Type']}")
