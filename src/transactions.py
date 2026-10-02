@@ -1,4 +1,15 @@
-"""Transaction management and CSV data storage."""
+# PROGRAM:    Personal Finance Tracker - Transactions
+# PURPOSE:    Create, store, retrieve, and display financial transactions.
+# INPUT:      Transaction date, description, type, category, and amount.
+# PROCESS:    Validates transaction data, checks for duplicate transactions,
+#             and reads or writes transaction records as needed.
+# OUTPUT:     Saved transaction records, transaction listings, and status messages.
+# HONOR CODE: On my honor, as an Aggie, I have neither given nor received
+#             unauthorized aid on this academic work.
+# Gen AI:     In keeping with my commitment to leverage advanced technology
+#             for enhanced efficiency and accuracy in my work, I use
+#             generative artificial intelligence tools to assist in writing
+#             my Python code.
 
 import csv
 import os
@@ -31,6 +42,14 @@ def add_transaction():
     transaction_type = utils.get_valid_transaction_type()
     category = "Income" if transaction_type == "income" else utils.get_category_choice()
     amount = utils.get_valid_amount()
+    if is_duplicate(date, description, category, amount, transaction_type):
+        print("\nWarning: This transaction already exists.")
+
+        choice = input("Would you like to save it anyway? (y/n): ").strip().lower()
+
+        if choice != "y":
+            print("Duplicate transaction was not saved.")
+            return
     try:
         save_transaction(date, description, category, amount, transaction_type)
         print("\nTransaction successfully saved!")
@@ -68,3 +87,19 @@ def view_transactions():
         return
     for row in records:
         print(f"Date: {row['Date']} | Description: {row['Description']} | Category: {row['Category']} | Amount: ${row['Amount']} | Type: {row['Type']}")
+
+def is_duplicate(date, description, category, amount, transaction_type):
+    """Check whether an identical transaction already exists."""
+    records = load_transactions()
+
+    for row in records:
+        if (
+            row["Date"] == date
+            and row["Description"].lower() == description.lower()
+            and row["Category"] == category
+            and float(row["Amount"]) == amount
+            and row["Type"].lower() == transaction_type.lower()
+        ):
+            return True
+
+    return False    

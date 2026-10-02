@@ -1,6 +1,17 @@
-"""Visualization functions for the Personal Finance Tracker."""
+# PROGRAM:    Personal Finance Tracker - Visualizer
+# PURPOSE:    Create graphical visualizations of recorded financial data.
+# INPUT:      Aggregated category and monthly expense data.
+# PROCESS:    Uses Matplotlib to create bar charts from calculated financial totals.
+# OUTPUT:     Saves graphical financial reports as PNG image files.
+# HONOR CODE: On my honor, as an Aggie, I have neither given nor received
+#             unauthorized aid on this academic work.
+# Gen AI:     In keeping with my commitment to leverage advanced technology
+#             for enhanced efficiency and accuracy in my work, I use
+#             generative artificial intelligence tools to assist in writing
+#             my Python code.
 
 import matplotlib
+import os
 
 # Use a non-GUI backend so charts work in GitHub Codespaces.
 matplotlib.use("Agg")
@@ -28,7 +39,8 @@ def category_expense_chart(category_totals):
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
 
-    filename = "category_expenses.png"
+    os.makedirs("images", exist_ok=True)
+    filename = os.path.join("images", "category_expenses.png")
     plt.savefig(filename)
     plt.close()
 
@@ -55,7 +67,8 @@ def monthly_spending_chart(monthly_totals):
     plt.xticks(rotation=45, ha="right")
     plt.tight_layout()
 
-    filename = "monthly_spending.png"
+    os.makedirs("images", exist_ok=True)
+    filename = os.path.join("images", "monthly_spending.png")
     plt.savefig(filename)
     plt.close()
 

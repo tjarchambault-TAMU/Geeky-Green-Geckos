@@ -1,4 +1,14 @@
-"""Input validation, sanitization, and shared helper functions."""
+# PROGRAM:    Personal Finance Tracker - Utilities
+# PURPOSE:    Provide shared input validation and helper functions.
+# INPUT:      User-entered dates, descriptions, amounts, categories, and menu selections.
+# PROCESS:    Validates and sanitizes user input before it is used by other modules.
+# OUTPUT:     Validated values or appropriate error messages for invalid input.
+# HONOR CODE: On my honor, as an Aggie, I have neither given nor received
+#             unauthorized aid on this academic work.
+# Gen AI:     In keeping with my commitment to leverage advanced technology
+#             for enhanced efficiency and accuracy in my work, I use
+#             generative artificial intelligence tools to assist in writing
+#             my Python code.
 
 from datetime import datetime
 
@@ -25,12 +35,24 @@ def get_non_empty_string(prompt):
 
 
 def get_valid_date(prompt="Enter the date (MM/DD/YYYY): "):
-    """Keep asking until the user enters a date in MM/DD/YYYY format."""
+    """Keep asking until the user enters a valid date."""
     while True:
         date_str = input(prompt).strip()
+
         try:
-            datetime.strptime(date_str, "%m/%d/%Y")
+            entered_date = datetime.strptime(date_str, "%m/%d/%Y")
+            current_date = datetime.now()
+
+            if entered_date > current_date:
+                print("Transaction date cannot be in the future.")
+                continue
+
+            if entered_date.year < current_date.year:
+                print("Transaction date must be within the current year.")
+                continue
+
             return date_str
+
         except ValueError:
             print("Please enter the date as MM/DD/YYYY.")
 

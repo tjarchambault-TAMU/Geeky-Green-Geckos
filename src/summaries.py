@@ -1,4 +1,15 @@
-"""Financial summaries and calculations."""
+# PROGRAM:    Personal Finance Tracker - Summaries
+# PURPOSE:    Calculate and display an overall summary of financial activity.
+# INPUT:      Stored transaction records.
+# PROCESS:    Calculates total income, total expenses, and net savings from
+#             valid transaction data.
+# OUTPUT:     Displays summarized financial totals and savings status.
+# HONOR CODE: On my honor, as an Aggie, I have neither given nor received
+#             unauthorized aid on this academic work.
+# Gen AI:     In keeping with my commitment to leverage advanced technology
+#             for enhanced efficiency and accuracy in my work, I use
+#             generative artificial intelligence tools to assist in writing
+#             my Python code.
 
 from . import transactions
 

@@ -1,4 +1,18 @@
-"""Financial reports for the Personal Finance Tracker."""
+# PROGRAM:    Personal Finance Tracker - Reports
+# PURPOSE:    Generate category-based and monthly financial reports.
+# INPUT:      Stored expense transaction records.
+# PROCESS:    Groups and totals expenses by category or calendar month and
+#             sends the calculated results to the visualization functions.
+# OUTPUT:     Displays report totals and generates graphical financial reports.
+# HONOR CODE: On my honor, as an Aggie, I have neither given nor received
+#             unauthorized aid on this academic work.
+# Gen AI:     In keeping with my commitment to leverage advanced technology
+#             for enhanced efficiency and accuracy in my work, I use
+#             generative artificial intelligence tools to assist in writing
+#             my Python code.
+
+import calendar
+from datetime import datetime
 
 from . import transactions
 from . import visualizer
@@ -47,7 +61,7 @@ def category_based_expenses():
 
 
 def get_monthly_spending():
-    """Return total expenses grouped by month and year."""
+    """Return total expenses grouped by month."""
 
     records = transactions.load_transactions()
     monthly_totals = {}
@@ -55,25 +69,26 @@ def get_monthly_spending():
     for transaction in records:
         if transaction["Type"].lower() == "expense":
             try:
-                date = transaction["Date"]
+                date = datetime.strptime(transaction["Date"], "%m/%d/%Y")
                 amount = float(transaction["Amount"])
 
-                parts = date.split("/")
-                month = int(parts[0])
-                year = parts[2]
+                month = date.month
 
-                month_year = f"{month:02d}/{year}"
-
-                if month_year in monthly_totals:
-                    monthly_totals[month_year] += amount
+                if month in monthly_totals:
+                    monthly_totals[month] += amount
                 else:
-                    monthly_totals[month_year] = amount
+                    monthly_totals[month] = amount
 
-            except (ValueError, KeyError, IndexError):
+            except (ValueError, KeyError):
                 print("Warning: invalid transaction skipped.")
+# Convert numeric months to names while preserving chronological order.
+    sorted_totals = {}
 
-    return monthly_totals
+    for month in sorted(monthly_totals):
+        month_name = calendar.month_name[month]
+        sorted_totals[month_name] = monthly_totals[month]
 
+    return sorted_totals
 
 def monthly_spending():
     """Display monthly spending and provide a visualization."""
@@ -86,8 +101,8 @@ def monthly_spending():
         print("No expense transactions found.")
         return
 
-    for month_year, total in sorted(monthly_totals.items()):
-        print(f"{month_year}: ${total:.2f}")
+    for month, total in monthly_totals.items():
+        print(f"{month}: ${total:.2f}")
 
     print("\nOpening the Monthly Spending visualization...")
 

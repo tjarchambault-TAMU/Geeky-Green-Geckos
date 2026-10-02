@@ -14,3 +14,8 @@ Date,Description,Category,Amount,Type
 12/12/1989,test 0,Healthcare,20.00,expense
 12/12/1989,test11,Income,7365.00,income
 9/25/2026,Test Transaction,Utilities,2.00,expense
+05/31/2026,pay check,Income,2400.00,income
+05/03/2026,loan,Income,500.00,income
+05/30/2026,loan,Miscellaneous,500.00,expense
+05/30/2026,loan,Income,500.00,income
+01/01/2026,123,Housing,500.00,expense
